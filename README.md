@@ -15,8 +15,8 @@
 - [x] Repository Pattern
 - [x] Stylecop
 - [x] Neat folder structure
-- [x] *xUnit (coming soon)*
-- [x] *Shouldly (coming soon)*
+- [ ] *xUnit (coming soon)*
+- [ ] *Shouldly (coming soon)*
 
 ```
 ├───src
