@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Business", "App.Busines
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Web.Api", "App.Web.Api\App.Web.Api.csproj", "{46C658D0-4D07-451C-94E3-78A733FA203B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data.Repository", "App.Data.Access\App.Data.Repository.csproj", "{6FB9CCAD-2CB2-4D2E-8160-6E8A66A59AE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data.Repository", "App.Data.Repository\App.Data.Repository.csproj", "{6FB9CCAD-2CB2-4D2E-8160-6E8A66A59AE6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data.Context", "App.Data.Context\App.Data.Context.csproj", "{FB844605-1BE1-4FA5-9518-04DF53F60678}"
 EndProject
