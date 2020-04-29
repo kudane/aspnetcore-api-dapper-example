@@ -9,6 +9,7 @@
 
 เน้นวางโครงสร้างให้ง่ายที่สุดรองรับการทดสอบและนำ Library ที่น่าสนใจมาช่วยให้โค้ดมีความกระชับมากขึ้น
 
+- [x] Install Denpendency (Install.cs)
 - [x] High Cohesion Low Coupling
 - [x] Interface using
 - [x] Dapper, Dapper.Contrib, Dapper.SqlBuilder
