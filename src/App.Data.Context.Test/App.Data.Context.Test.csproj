@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\App.Data.Access\App.Data.Repository.csproj" />
+    <ProjectReference Include="..\App.Data.Repository\App.Data.Repository.csproj" />
     <ProjectReference Include="..\App.Data.Context\App.Data.Context.csproj" />
   </ItemGroup>
 
