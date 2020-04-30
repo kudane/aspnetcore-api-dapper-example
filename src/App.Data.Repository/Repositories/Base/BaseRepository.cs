@@ -9,10 +9,8 @@
     {
         protected IDbConnection Connection { get; }
 
-        public BaseRepository(IDbConnection connection)
-        {
-            Connection = connection;
-        }
+        public BaseRepository(IDbConnection connection) => 
+            (Connection) = (connection);
 
         public bool CreateOrFailed(TEntitie entitie, out long identity)
         {

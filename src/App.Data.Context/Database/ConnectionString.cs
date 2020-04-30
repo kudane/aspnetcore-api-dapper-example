@@ -4,9 +4,6 @@
 
     internal class ConnectionString : IConnectionString
     {
-        public string GetConnection()
-        {
-            return Configuration.ConnectionSrting;
-        }
+        public string GetConnection() => Configuration.ConnectionSrting;
     }
 }

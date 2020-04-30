@@ -8,8 +8,8 @@
 
         public Pager(int pageSize, int pageNumber)
         {
-            this.PageSize = pageSize;
-            this.PageNumber = pageNumber;
+            PageSize = pageSize;
+            PageNumber = pageNumber;
         }
     }
 }

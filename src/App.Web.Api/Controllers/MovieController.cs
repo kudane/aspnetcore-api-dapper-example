@@ -10,18 +10,14 @@
     {
         private readonly IMovieService _service;
 
-        public MovieController(IMovieService service)
-        {
-            _service = service;
-        }
+        public MovieController(IMovieService service) => (_service) = (service);
 
         [HttpGet]
         public IActionResult Get() => Ok(_service.GetAll());
 
         [HttpGet("{key}")]
         public async Task<IActionResult> Get(int key) => 
-            (await _service.Get(key))
-                .Match(movie => Ok(movie), NotFound);
+            (await _service.Get(key)).Match(movie => Ok(movie), NotFound);
 
         [HttpGet]
         [Route("genre")]
