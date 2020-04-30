@@ -7,9 +7,9 @@ using Xunit;
 using Xunit.Abstractions;
 using Xunit.DependencyInjection;
 
-[assembly: TestFramework("App.Test.SqlServerContext.Startup", "App.Test.SqlServerContext")]
+[assembly: TestFramework("App.Data.Context.Test.Startup", "App.Data.Context.Test")]
 
-namespace App.Test.SqlServerContext
+namespace App.Data.Context.Test
 {
     public class Startup : DependencyInjectionTestFramework
     {

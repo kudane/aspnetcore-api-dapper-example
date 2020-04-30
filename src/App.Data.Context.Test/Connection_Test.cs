@@ -2,13 +2,13 @@
 using System.Data;
 using Xunit;
 
-namespace App.Test.SqlServerContext
+namespace App.Data.Context.Test
 {
-    public class SqlServerContextTest
+    public class Connection_Test
     {
         private readonly ISqlServerContext _context;
 
-        public SqlServerContextTest(ISqlServerContext context)
+        public Connection_Test(ISqlServerContext context)
         {
             _context = context;
         }

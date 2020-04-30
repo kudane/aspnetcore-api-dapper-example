@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data.Context", "App.Dat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D5835EAE-D0D8-4CC2-976F-41B534705EB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Test.SqlServerContext", "App.Test.SqlServerContext\App.Test.SqlServerContext.csproj", "{B5FBDF0B-512E-4C9F-A5BB-3B5123D106CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data.Context.Test", "App.Data.Context.Test\App.Data.Context.Test.csproj", "{B5FBDF0B-512E-4C9F-A5BB-3B5123D106CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F622DE01-8466-4742-B95E-3469EA008781}"
 EndProject
