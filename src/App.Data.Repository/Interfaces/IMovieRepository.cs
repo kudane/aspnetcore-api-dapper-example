@@ -7,6 +7,6 @@
 
     public interface IMovieRepository : IGenericRepository<Movie>
     {
-        Task<IEnumerable<Movie>> SelectByGenreKey(int key, Pager pager);
+        ValueTask<IEnumerable<Movie>> SelectByGenreKey(int key, Pager pager);
     }
 }

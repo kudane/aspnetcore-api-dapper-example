@@ -13,6 +13,6 @@
 
         IEnumerable<TEntity> SelectAll();
 
-        Task<TEntity> FindOrNull(int key);
+        ValueTask<TEntity> FindOrNull(int key);
     }
 }

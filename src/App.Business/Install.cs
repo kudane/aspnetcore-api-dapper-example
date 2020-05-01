@@ -9,6 +9,7 @@
         public static void AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IGenreService, GenreService>();
         }
     }
 }

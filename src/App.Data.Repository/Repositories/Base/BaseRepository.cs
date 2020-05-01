@@ -70,7 +70,7 @@
         public IEnumerable<TEntity> SelectAll() => 
             Connection.GetAll<TEntity>();
 
-        public async Task<TEntity> FindOrNull(int key) => 
+        public async ValueTask<TEntity> FindOrNull(int key) => 
             await Connection.GetAsync<TEntity>(key);
     }
 }
