@@ -3,16 +3,16 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IGenericRepository<TEntitie>
+    public interface IGenericRepository<TEntity>
     {
-        bool CreateOrFailed(TEntitie entitie, out long identity);
+        bool CreateOrFailed(TEntity entitie, out long identity);
 
-        bool UpdateOrFailed(TEntitie entitie);
+        bool UpdateOrFailed(TEntity entitie);
 
-        bool DeleteOrFailed(TEntitie entitie);
+        bool DeleteOrFailed(TEntity entitie);
 
-        IEnumerable<TEntitie> SelectAll();
+        IEnumerable<TEntity> SelectAll();
 
-        Task<TEntitie> FindOrNull(int key);
+        Task<TEntity> FindOrNull(int key);
     }
 }
