@@ -5,14 +5,14 @@
     using System.Threading.Tasks;
     using Dapper.Contrib.Extensions;
 
-    abstract class BaseRepository<TEntitie> where TEntitie : class
+    abstract class BaseRepository<TEntity> where TEntity : class
     {
         protected IDbConnection Connection { get; }
 
         public BaseRepository(IDbConnection connection) => 
             (Connection) = (connection);
 
-        public bool CreateOrFailed(TEntitie entitie, out long identity)
+        public bool CreateOrFailed(TEntity entitie, out long identity)
         {
             bool state = false;
             identity = 0;
@@ -31,7 +31,7 @@
             return state;
         }
 
-        public bool UpdateOrFailed(TEntitie entitie)
+        public bool UpdateOrFailed(TEntity entitie)
         {
             bool state = false;
             using var tx = Connection.BeginTransaction();
@@ -49,7 +49,7 @@
             return state;
         }
 
-        public bool DeleteOrFailed(TEntitie entitie)
+        public bool DeleteOrFailed(TEntity entitie)
         {
             bool state = false;
             using var tx = Connection.BeginTransaction();
@@ -67,10 +67,10 @@
             return state;
         }
 
-        public IEnumerable<TEntitie> SelectAll() => 
-            Connection.GetAll<TEntitie>();
+        public IEnumerable<TEntity> SelectAll() => 
+            Connection.GetAll<TEntity>();
 
-        public async Task<TEntitie> FindOrNull(int key) => 
-            await Connection.GetAsync<TEntitie>(key);
+        public async ValueTask<TEntity> FindOrNull(int key) => 
+            await Connection.GetAsync<TEntity>(key);
     }
 }

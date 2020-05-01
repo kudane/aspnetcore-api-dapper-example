@@ -12,21 +12,17 @@
     internal class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
-        private readonly IGenreRepository _genreRepository;
 
         public MovieService(IMovieRepository movieRepository, IGenreRepository genreRepository) =>
-            (_movieRepository, _genreRepository) = (movieRepository, genreRepository);
+            (_movieRepository) = (movieRepository);
 
         public IEnumerable<Movie> GetAll() => _movieRepository.SelectAll();
 
-        public async Task<Option<Movie, Error>> Get(int key) =>
+        public async ValueTask<Option<Movie, Error>> Get(int key) =>
             (await _movieRepository.FindOrNull(key))
                 .SomeWhen<Movie, Error>(movie => movie != null, $"Movie {key}, Not found.");
 
-        public async Task<Option<IEnumerable<Movie>, Error>> GetByGenreKey(int key, Pager pager) =>
-            await (await _genreRepository.FindOrNull(key))
-                .SomeWhen<Genre, Error>(genre => genre != null, $"Genre {key}, Not found.")
-                .MapAsync(async _ => await _movieRepository.SelectByGenreKey(key, pager));
-                
+        public async ValueTask<IEnumerable<Movie>> GetByGenreKey(int key, int pageSize = 20, int pageNumber = 1) =>
+            await _movieRepository.SelectByGenreKey(key, new Pager(pageSize, pageNumber));
     }
 }
