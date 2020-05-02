@@ -6,10 +6,10 @@
 
         internal int PageNumber { get;}
 
-        public Pager(int pageSize, int pageNumber)
+        public Pager(int size, int number)
         {
-            PageSize = pageSize;
-            PageNumber = pageNumber;
+            PageSize = size;
+            PageNumber = number;
         }
     }
 }
