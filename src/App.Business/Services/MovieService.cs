@@ -13,7 +13,7 @@
     {
         private readonly IMovieRepository _movieRepository;
 
-        public MovieService(IMovieRepository movieRepository, IGenreRepository genreRepository) =>
+        public MovieService(IMovieRepository movieRepository) =>
             (_movieRepository) = (movieRepository);
 
         public IEnumerable<Movie> GetAll() => _movieRepository.SelectAll();

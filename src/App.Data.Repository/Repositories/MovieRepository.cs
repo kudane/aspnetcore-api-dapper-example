@@ -1,10 +1,10 @@
 ﻿namespace App.Data.Repository.Repositories
 {
+    using App.Data.Context.Interfaces;
     using App.Data.Repository.Entities;
     using App.Data.Repository.Interfaces;
     using App.Data.Repository.Repositories.Base;
     using App.Data.Repository.Utilities;
-    using App.Data.Context.Interfaces;
     using Dapper;
     using System.Collections.Generic;
     using System.Threading.Tasks;
