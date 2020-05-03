@@ -1,17 +1,18 @@
 ﻿namespace App.Data.Repository.Repositories.Base
 {
+    using Dapper.Contrib.Extensions;
+    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Threading.Tasks;
-    using Dapper.Contrib.Extensions;
 
-    abstract class BaseRepository<TEntity> where TEntity : class
+    internal abstract class BaseRepository<TEntity> where TEntity : class
     {
         protected IDbConnection Connection { get; }
 
-        public BaseRepository(IDbConnection connection) => 
-            (Connection) = (connection);
+        public BaseRepository(IDbConnection connection) => (Connection) = (connection);
 
+        #region Create, Update, Delete
         public bool CreateOrFailed(TEntity entitie, out long identity)
         {
             bool state = false;
@@ -66,11 +67,17 @@
 
             return state;
         }
+        #endregion
 
-        public IEnumerable<TEntity> SelectAll() => 
-            Connection.GetAll<TEntity>();
+        #region SelectAll, Find
+        public IEnumerable<TEntity> SelectAll() => Connection.GetAll<TEntity>();
 
-        public async ValueTask<TEntity> FindOrNull(int key) => 
-            await Connection.GetAsync<TEntity>(key);
+        public async ValueTask<TEntity> FindOrNull(int key) => await Connection.GetAsync<TEntity>(key);
+        #endregion
+
+        #region Action
+        public async Task<TAction> DbAction<TAction>(Func<IDbConnection, Task<TAction>> action) =>
+            await action(Connection);
+        #endregion
     }
 }
