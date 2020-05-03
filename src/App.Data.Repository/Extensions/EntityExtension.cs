@@ -1,10 +1,7 @@
-﻿using App.Data.Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace App.Data.Repository.Extensions
+﻿namespace App.Data.Repository.Extensions
 {
+    using App.Data.Repository.Entities;
+
     public static class EntityExtension
     {
         public static bool IsNotNull(this Entity entity)
