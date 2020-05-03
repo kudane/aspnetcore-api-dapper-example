@@ -1,6 +1,6 @@
 ﻿namespace App.Data.Repository.Utilities
 {
-    public readonly struct Pager
+    public struct Pager
     {
         internal int PageSize { get;}
 
