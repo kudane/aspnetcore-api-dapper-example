@@ -3,11 +3,8 @@
     using Dapper.Contrib.Extensions;
 
     [Table("[dbo].[Genre]")]
-    public class Genre
+    public class Genre: Entity
     {
-        [Key]
-        public int Id { get; set; }
-
         public string Description { get; set; }
     }
 }

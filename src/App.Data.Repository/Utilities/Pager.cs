@@ -1,15 +1,15 @@
 ﻿namespace App.Data.Repository.Utilities
 {
-    public readonly struct Pager
+    public struct Pager
     {
         internal int PageSize { get;}
 
         internal int PageNumber { get;}
 
-        public Pager(int pageSize, int pageNumber)
+        public Pager(int size, int number)
         {
-            PageSize = pageSize;
-            PageNumber = pageNumber;
+            PageSize = size;
+            PageNumber = number;
         }
     }
 }

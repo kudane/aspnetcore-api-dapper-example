@@ -9,6 +9,6 @@
     {
         IEnumerable<Genre> GetAll();
 
-        ValueTask<Option<Genre, Error>> Get(int key);
+        Task<Option<Genre, Error>> Get(int key);
     }
 }

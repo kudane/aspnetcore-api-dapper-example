@@ -9,8 +9,8 @@
     {
         IEnumerable<Movie> GetAll();
 
-        ValueTask<Option<Movie, Error>> Get(int key);
+        Task<Option<Movie, Error>> Get(int key);
 
-        ValueTask<IEnumerable<Movie>> GetByGenreKey(int key, int pageSize, int pageNumber);
+        Task<IEnumerable<Movie>> GetByGenreKey(int key, int pageSize, int pageNumber);
     }
 }

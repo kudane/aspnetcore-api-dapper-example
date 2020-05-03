@@ -1,10 +1,10 @@
 ﻿namespace App.Data.Repository.Repositories
 {
+    using App.Data.Context.Interfaces;
     using App.Data.Repository.Entities;
     using App.Data.Repository.Interfaces;
     using App.Data.Repository.Repositories.Base;
     using App.Data.Repository.Utilities;
-    using App.Data.Context.Interfaces;
     using Dapper;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -15,7 +15,7 @@
         { 
         }
 
-        public async ValueTask<IEnumerable<Movie>> SelectByGenreKey(int key, Pager pager)
+        public async Task<IEnumerable<Movie>> SelectByGenreKey(int key, Pager pager)
         {
             var parameters = new { key, pager.PageSize, pager.PageNumber };
             var sql = @"

@@ -11,7 +11,7 @@
 
         public SqlServerContext(IConnectionString connectionString)
         {
-            if (connectionString == null)
+            if (connectionString is null)
             {
                 throw new NullReferenceException(connectionString.GetType().ToString());
             }

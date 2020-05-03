@@ -1,8 +1,9 @@
 ﻿namespace App.Data.Repository.Interfaces
 {
     using App.Data.Repository.Entities;
+    using App.Data.Repository.Interfaces.Base;
 
-    public interface IGenreRepository : IGenericRepository<Genre>
+    public interface IGenreRepository : IBaseRepository<Genre>
     {
     }
 }
