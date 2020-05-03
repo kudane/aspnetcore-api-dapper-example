@@ -15,7 +15,7 @@
 
         IEnumerable<TEntity> SelectAll();
 
-        ValueTask<TEntity> FindOrNull(int key);
+        Task<TEntity> FindOrNull(int key);
 
         Task<TAction> DbAction<TAction>(Func<IDbConnection, Task<TAction>> action);
     }

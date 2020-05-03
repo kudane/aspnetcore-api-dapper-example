@@ -15,7 +15,7 @@
         public IActionResult Get() => Ok(_service.GetAll());
 
         [HttpGet("{key}")]
-        public async ValueTask<IActionResult> Get(int key) =>
+        public async Task<IActionResult> Get(int key) =>
             (await _service.Get(key)).Match(movie => Ok(movie), NotFound);
     }
 }

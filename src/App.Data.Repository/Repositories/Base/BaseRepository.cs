@@ -72,7 +72,7 @@
         #region SelectAll, Find
         public IEnumerable<TEntity> SelectAll() => Connection.GetAll<TEntity>();
 
-        public async ValueTask<TEntity> FindOrNull(int key) => await Connection.GetAsync<TEntity>(key);
+        public async Task<TEntity> FindOrNull(int key) => await Connection.GetAsync<TEntity>(key);
         #endregion
 
         #region Action

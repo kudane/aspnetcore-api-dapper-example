@@ -18,11 +18,11 @@
 
         public IEnumerable<Movie> GetAll() => _movieRepository.SelectAll();
 
-        public async ValueTask<Option<Movie, Error>> Get(int key) =>
+        public async Task<Option<Movie, Error>> Get(int key) =>
             (await _movieRepository.FindOrNull(key))
                 .SomeWhen<Movie, Error>(movie => movie != null, $"Movie {key}, Not found.");
 
-        public async ValueTask<IEnumerable<Movie>> GetByGenreKey(int key, int pageSize = 20, int pageNumber = 1) =>
+        public async Task<IEnumerable<Movie>> GetByGenreKey(int key, int pageSize = 20, int pageNumber = 1) =>
             await _movieRepository.SelectByGenreKey(key, new Pager(pageSize, pageNumber));
     }
 }

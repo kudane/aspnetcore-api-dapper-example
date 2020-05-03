@@ -15,7 +15,7 @@
         { 
         }
 
-        public async ValueTask<IEnumerable<Movie>> SelectByGenreKey(int key, Pager pager)
+        public async Task<IEnumerable<Movie>> SelectByGenreKey(int key, Pager pager)
         {
             var parameters = new { key, pager.PageSize, pager.PageNumber };
             var sql = @"

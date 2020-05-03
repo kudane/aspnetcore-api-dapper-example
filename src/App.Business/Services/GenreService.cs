@@ -16,7 +16,7 @@
 
         public IEnumerable<Genre> GetAll() => _genreRepository.SelectAll();
 
-        public async ValueTask<Option<Genre, Error>> Get(int key) =>
+        public async Task<Option<Genre, Error>> Get(int key) =>
             (await _genreRepository.FindOrNull(key))
                 .SomeWhen<Genre, Error>(genre => genre != null, $"Genre {key}, Not found.");
     }
