@@ -5,7 +5,7 @@
     using System.Data;
     using System.Threading.Tasks;
 
-    public interface IGenericRepository<TEntity>
+    public interface IBaseRepository<TEntity>
     {
         abstract bool CreateOrFailed(TEntity entitie, out long identity);
 
