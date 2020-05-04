@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\server\App.Data.Context\App.Data.Context.csproj" />
+    <ProjectReference Include="..\..\src\server\App.Data.Context\App.Data.Context.csproj" />
   </ItemGroup>
 
 
