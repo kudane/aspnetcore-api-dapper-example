@@ -23,8 +23,8 @@
 
         [HttpGet("{key}/movies")]
         public async Task<IActionResult> GetMovies(int key = 1, int pageSize = 20, int pageNumber = 1) =>
-            (await (await _genreService.Get(key))
-                .MapAsync(async _ => await _movieService.GetByGenreKey(key, pageSize, pageNumber)))
-            .Match(movies => Ok(movies), NotFound);
+            (await _genreService.Get(key))
+                .Map(_ => _movieService.GetByGenreKey(key, pageSize, pageNumber))
+                .Match(movies => Ok(movies), NotFound);
     }
 }

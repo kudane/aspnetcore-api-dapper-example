@@ -2,12 +2,10 @@
 {
     using App.Data.Repository.Entities;
     using App.Data.Repository.Interfaces.Base;
-    using App.Data.Repository.Utilities;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using App.Data.Repository.Produces;
 
     public interface IMovieRepository: IBaseRepository<Movie>
     {
-        Task<IEnumerable<Movie>> SelectByGenreKey(int key, Pager pager);
+        ref PageResult<Movie> SelectByGenreKey(int key, int pageSize, int pageNumber);
     }
 }
