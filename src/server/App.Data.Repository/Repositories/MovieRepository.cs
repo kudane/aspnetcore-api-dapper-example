@@ -15,7 +15,6 @@
 
         public MovieRepository(ISqlServerContext context) : base(context.Connection)
         {
-            _pageResult = new PageResult<Movie>();
         }
 
         public ref PageResult<Movie> SelectByGenreKey(int key, int pageSize, int pageNumber)
@@ -41,10 +40,13 @@
                 var totalItems = multi.Read<int>(buffered: false).First();
                 var items = multi.Read<Movie>(buffered: false).AsList();
 
-                _pageResult.CurrentPage = pageNumber;
-                _pageResult.TotalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
-                _pageResult.Items = items;
-                _pageResult.TotalItems = items.Count;
+                _pageResult = new PageResult<Movie>
+                {
+                    CurrentPage = pageNumber,
+                    TotalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize),
+                    Items = items,
+                    TotalItems = items.Count
+                };
             }
 
             return ref _pageResult;
