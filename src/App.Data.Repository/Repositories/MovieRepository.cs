@@ -3,30 +3,51 @@
     using App.Data.Context.Interfaces;
     using App.Data.Repository.Entities;
     using App.Data.Repository.Interfaces;
+    using App.Data.Repository.Produces;
     using App.Data.Repository.Repositories.Base;
-    using App.Data.Repository.Utilities;
     using Dapper;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using System;
+    using System.Linq;
 
     internal class MovieRepository : BaseRepository<Movie>, IMovieRepository
     {
+        private PageResult<Movie> _pageResult;
+
         public MovieRepository(ISqlServerContext context) : base(context.Connection)
-        { 
+        {
+            _pageResult = new PageResult<Movie>();
         }
 
-        public async Task<IEnumerable<Movie>> SelectByGenreKey(int key, Pager pager)
+        public ref PageResult<Movie> SelectByGenreKey(int key, int pageSize, int pageNumber)
         {
-            var parameters = new { key, pager.PageSize, pager.PageNumber };
+            var parameters = new { key, pageSize, pageNumber };
+
             var sql = @"
-                  SELECT    m.* from [dbo].[Movie] m
+                  SELECT    COUNT(m.Id) 
+                  FROM      [dbo].[Movie] m
+                  INNER     JOIN [dbo].[MovieGenre] mg on m.Id = mg.MovieId
+                  WHERE     mg.GenreId = @key;
+
+                  SELECT    m.* 
+                  FROM      [dbo].[Movie] m
                   INNER     JOIN [dbo].[MovieGenre] mg on m.Id = mg.MovieId
                   WHERE     mg.GenreId = @key
                   ORDER BY  [Id]
-                  OFFSET    @PageSize * (@PageNumber - 1) ROWS
-                  FETCH     NEXT @PageSize ROWS ONLY";
+                  OFFSET    @pageSize * (@pageNumber - 1) ROWS
+                  FETCH     NEXT @pageSize ROWS ONLY;";
 
-            return await Connection.QueryAsync<Movie>(sql, parameters);
+            using (var multi = Connection.QueryMultiple(sql, parameters))
+            {
+                var totalItems = multi.Read<int>(buffered: false).First();
+                var items = multi.Read<Movie>(buffered: false).AsList();
+
+                _pageResult.CurrentPage = pageNumber;
+                _pageResult.TotalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
+                _pageResult.Items = items;
+                _pageResult.TotalItems = items.Count;
+            }
+
+            return ref _pageResult;
         }
     }
 }

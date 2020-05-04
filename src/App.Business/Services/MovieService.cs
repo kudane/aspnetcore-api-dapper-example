@@ -1,14 +1,13 @@
 ﻿namespace App.Business.Services
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using App.Business.Interfaces;
     using App.Data.Repository.Entities;
     using App.Data.Repository.Extensions;
     using App.Data.Repository.Interfaces;
-    using App.Data.Repository.Utilities;
+    using App.Data.Repository.Produces;
     using Optional;
-    using Optional.Async.Extensions;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     internal class MovieService : IMovieService
     {
@@ -23,7 +22,7 @@
             (await _movieRepository.FindOrNull(key))
                 .SomeWhen<Movie, Error>(movie => movie.IsNotNull(), $"Movie {key}, Not found.");
 
-        public async Task<IEnumerable<Movie>> GetByGenreKey(int key, int pageSize = 20, int pageNumber = 1) =>
-            await _movieRepository.SelectByGenreKey(key, new Pager(pageSize, pageNumber));
+        public ref PageResult<Movie> GetByGenreKey(int key, int pageSize = 20, int pageNumber = 1) =>
+            ref _movieRepository.SelectByGenreKey(key, pageSize, pageNumber);
     }
 }
