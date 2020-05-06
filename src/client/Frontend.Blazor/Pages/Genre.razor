@@ -34,16 +34,68 @@ else
             }
         </tbody>
     </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item @PreviousDisabledClass"><a class="page-link" href="#">Previous</a></li>
+
+            @for (var i = 1; i <= _result.TotalPages; i++)
+            {
+                var pageNumber = i;
+
+                if (currentPage == pageNumber)
+                {
+                    <li class="page-item active">
+                        <span style="cursor: pointer;" class="page-link" @onclick="@(async () => await OnClickPage(pageNumber))">@i</span>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <span style="cursor: pointer;" class="page-link" @onclick="@(async () => await OnClickPage(pageNumber))">@i</span>
+                    </li>
+                }
+            }
+
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
 }
 
 @code {
     [Parameter]
     public int Id { get; set; }
 
+    const int pagesize = 5;
+    private int pagenumber = 1;
+    private int currentPage = 1;
+
     private PageResult<Movie> _result = new PageResult<Movie>();
+
+    private bool isPreviousDisabled = false;
+
+    private string PreviousDisabledClass => isPreviousDisabled ? "disabled" : null;
 
     protected override async Task OnParametersSetAsync()
     {
-        _result = await Http.GetJsonAsync<PageResult<Movie>>($"api/genre/{Id}/movies");
+        await GetMoviesAync();
+    }
+
+    private async Task OnClickPage(int number)
+    {
+        pagenumber = number;
+
+        await GetMoviesAync();
+    }
+
+    private async Task GetMoviesAync()
+    {
+        var url = $"api/genre/{Id}/movies?pagesize={pagesize}&pagenumber={pagenumber}";
+
+        _result = await Http.GetJsonAsync<PageResult<Movie>>(url);
+
+        isPreviousDisabled = _result.CurrentPage == 1;
+
+        currentPage = _result.CurrentPage;
     }
 }
