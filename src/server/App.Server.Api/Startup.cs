@@ -1,4 +1,4 @@
-namespace App.Web.Api
+namespace App.Server.Api
 {
     using App.Business;
     using App.Data.Repository;

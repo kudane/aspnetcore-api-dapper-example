@@ -1,4 +1,4 @@
-namespace App.Web.Api
+namespace App.Server.Api
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;

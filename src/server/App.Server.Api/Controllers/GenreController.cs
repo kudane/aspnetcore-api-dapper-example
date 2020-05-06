@@ -1,7 +1,7 @@
-﻿namespace App.Web.Api.Controllers
+﻿namespace App.Server.Api.Controllers
 {
     using App.Business.Interfaces;
-    using App.Web.Api.Controllers.Base;
+    using App.Server.Api.Controllers.Base;
     using Microsoft.AspNetCore.Mvc;
     using Optional.Async.Extensions;
     using System.Threading.Tasks;
