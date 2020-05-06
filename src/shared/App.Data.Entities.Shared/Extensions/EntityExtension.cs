@@ -1,6 +1,6 @@
-﻿namespace App.Data.Entities.Extensions
+﻿namespace App.Data.Entities.Shared.Extensions
 {
-    using App.Data.Entities;
+    using App.Data.Entities.Shared;
 
     public static class EntityExtension
     {

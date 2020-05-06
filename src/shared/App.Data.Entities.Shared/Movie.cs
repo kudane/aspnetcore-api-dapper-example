@@ -1,4 +1,4 @@
-﻿namespace App.Data.Entities
+﻿namespace App.Data.Entities.Shared
 {
     using Dapper.Contrib.Extensions;
 

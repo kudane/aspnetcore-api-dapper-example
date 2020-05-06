@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\shared\App.Data.Entities.Shared\App.Data.Entities.Shared.csproj" />
     <ProjectReference Include="..\App.Data.Context\App.Data.Context.csproj" />
-    <ProjectReference Include="..\App.Data.Entities\App.Data.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

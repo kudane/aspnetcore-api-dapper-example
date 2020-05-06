@@ -1,8 +1,8 @@
 ﻿namespace App.Business.Services
 {
     using App.Business.Interfaces;
-    using App.Data.Entities;
-    using App.Data.Entities.Extensions;
+    using App.Data.Entities.Shared;
+    using App.Data.Entities.Shared.Extensions;
     using App.Data.Repository.Interfaces;
     using App.Data.Repository.Produces;
     using Optional;

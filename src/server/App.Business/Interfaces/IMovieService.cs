@@ -1,6 +1,6 @@
 ﻿namespace App.Business.Interfaces
 {
-    using App.Data.Entities;
+    using App.Data.Entities.Shared;
     using App.Data.Repository.Produces;
     using Optional;
     using System.Collections.Generic;

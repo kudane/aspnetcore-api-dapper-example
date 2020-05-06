@@ -1,7 +1,7 @@
 ﻿namespace App.Data.Repository.Repositories
 {
     using App.Data.Context.Interfaces;
-    using App.Data.Entities;
+    using App.Data.Entities.Shared;
     using App.Data.Repository.Interfaces;
     using App.Data.Repository.Produces;
     using App.Data.Repository.Repositories.Base;

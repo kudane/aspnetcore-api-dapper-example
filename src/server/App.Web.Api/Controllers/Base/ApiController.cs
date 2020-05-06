@@ -1,4 +1,4 @@
-﻿namespace App.Server.Api.Controllers.Base
+﻿namespace App.Web.Api.Controllers.Base
 {
     using App.Business;
     using Microsoft.AspNetCore.Mvc;
