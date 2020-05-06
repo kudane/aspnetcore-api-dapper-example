@@ -7,7 +7,7 @@
 
     public interface IBaseRepository<TEntity>
     {
-        abstract bool CreateOrFailed(TEntity entitie, out long identity);
+        bool CreateOrFailed(TEntity entitie, out long identity);
 
         bool UpdateOrFailed(TEntity entitie);
 
@@ -15,8 +15,8 @@
 
         IEnumerable<TEntity> SelectAll();
 
-        Task<TEntity> FindOrNull(int key);
+        Task<TEntity> GetOrNullAsync(int key);
 
-        Task<TAction> DbAction<TAction>(Func<IDbConnection, Task<TAction>> action);
+        Task<TAction> DbActionAsync<TAction>(Func<IDbConnection, Task<TAction>> action);
     }
 }

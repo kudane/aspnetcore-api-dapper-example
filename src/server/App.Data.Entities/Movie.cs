@@ -1,4 +1,4 @@
-﻿namespace App.Data.Repository.Entities
+﻿namespace App.Data.Entities
 {
     using Dapper.Contrib.Extensions;
 

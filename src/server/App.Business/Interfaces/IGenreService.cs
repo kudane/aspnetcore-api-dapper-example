@@ -1,6 +1,6 @@
 ﻿namespace App.Business.Interfaces
 {
-    using App.Data.Repository.Entities;
+    using App.Data.Entities;
     using Optional;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -9,6 +9,6 @@
     {
         IEnumerable<Genre> GetAll();
 
-        Task<Option<Genre, Error>> Get(int key);
+        Task<Option<Genre, Error>> GetAsync(int key);
     }
 }

@@ -19,12 +19,12 @@
 
         [HttpGet("{key}")]
         public async Task<IActionResult> GetAsync(int key) =>
-            (await _genreService.Get(key)).Match(genre => Ok(genre), NotFound);
+            (await _genreService.GetAsync(key)).Match(genre => Ok(genre), NotFound);
 
         [HttpGet("{key}/movies")]
-        public async Task<IActionResult> GetMovies(int key = 1, int pageSize = 20, int pageNumber = 1) =>
-            (await _genreService.Get(key))
-                .Map(_ => _movieService.GetByGenreKey(key, pageSize, pageNumber))
+        public async Task<IActionResult> GetMoviesAsync(int key = 1, int pageSize = 20, int pageNumber = 1) =>
+            (await _genreService.GetAsync(key))
+                .Map(_ => _movieService.FindMoviesByGenre(key, pageSize, pageNumber))
                 .Match(movies => Ok(movies), NotFound);
     }
 }

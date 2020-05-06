@@ -1,8 +1,8 @@
 ﻿namespace App.Business.Services
 {
     using App.Business.Interfaces;
-    using App.Data.Repository.Entities;
-    using App.Data.Repository.Extensions;
+    using App.Data.Entities;
+    using App.Data.Entities.Extensions;
     using App.Data.Repository.Interfaces;
     using App.Data.Repository.Produces;
     using Optional;
@@ -18,11 +18,11 @@
 
         public IEnumerable<Movie> GetAll() => _movieRepository.SelectAll();
 
-        public async Task<Option<Movie, Error>> Get(int key) =>
-            (await _movieRepository.FindOrNull(key))
+        public async Task<Option<Movie, Error>> GetAsync(int key) =>
+            (await _movieRepository.GetOrNullAsync(key))
                 .SomeWhen<Movie, Error>(movie => movie.IsNotNull(), $"Movie {key}, Not found.");
 
-        public ref PageResult<Movie> GetByGenreKey(int key, int pageSize = 20, int pageNumber = 1) =>
-            ref _movieRepository.SelectByGenreKey(key, pageSize, pageNumber);
+        public ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize = 20, int pageNumber = 1) =>
+            ref _movieRepository.SelectByGenreKey(genreKey, pageSize, pageNumber);
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace App.Data.Repository.Extensions
+﻿namespace App.Data.Entities.Extensions
 {
-    using App.Data.Repository.Entities;
+    using App.Data.Entities;
 
     public static class EntityExtension
     {

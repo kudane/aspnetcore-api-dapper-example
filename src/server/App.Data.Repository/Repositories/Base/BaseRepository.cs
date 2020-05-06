@@ -69,14 +69,14 @@
         }
         #endregion
 
-        #region SelectAll, Find
+        #region SelectAll, GetAsync
         public IEnumerable<TEntity> SelectAll() => Connection.GetAll<TEntity>();
 
-        public async Task<TEntity> FindOrNull(int key) => await Connection.GetAsync<TEntity>(key);
+        public async Task<TEntity> GetOrNullAsync(int key) => await Connection.GetAsync<TEntity>(key);
         #endregion
 
         #region Action
-        public async Task<TAction> DbAction<TAction>(Func<IDbConnection, Task<TAction>> action) =>
+        public async Task<TAction> DbActionAsync<TAction>(Func<IDbConnection, Task<TAction>> action) =>
             await action(Connection);
         #endregion
     }
