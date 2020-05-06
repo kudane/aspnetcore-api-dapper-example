@@ -2,7 +2,7 @@
 {
     using Dapper.Contrib.Extensions;
 
-    [Table("[dbo].[MovieGenre]")]
+    [Table("[dbo].[movie_genre]")]
     public class MovieGenre
     {
         [ExplicitKey]

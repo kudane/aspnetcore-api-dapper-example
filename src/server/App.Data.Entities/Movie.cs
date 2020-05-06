@@ -2,7 +2,7 @@
 {
     using Dapper.Contrib.Extensions;
 
-    [Table("[dbo].[Movie]")]
+    [Table("[dbo].[movie]")]
     public class Movie: Entity
     {
         public string Subject { get; set; }

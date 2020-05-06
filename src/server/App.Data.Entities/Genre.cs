@@ -2,7 +2,7 @@
 {
     using Dapper.Contrib.Extensions;
 
-    [Table("[dbo].[Genre]")]
+    [Table("[dbo].[genre]")]
     public class Genre: Entity
     {
         public string Description { get; set; }

@@ -22,16 +22,16 @@
             var parameters = new { key, pageSize, pageNumber };
 
             var sql = @"
-                  SELECT    COUNT(m.Id) 
-                  FROM      [dbo].[Movie] m
-                  INNER     JOIN [dbo].[MovieGenre] mg on m.Id = mg.MovieId
-                  WHERE     mg.GenreId = @key;
+                  SELECT    COUNT(m.id) 
+                  FROM      dbo.movie m
+                  INNER     JOIN dbo.movie_genre mg on m.id = mg.movieid
+                  WHERE     mg.genreid = @key;
 
                   SELECT    m.* 
-                  FROM      [dbo].[Movie] m
-                  INNER     JOIN [dbo].[MovieGenre] mg on m.Id = mg.MovieId
-                  WHERE     mg.GenreId = @key
-                  ORDER BY  [Id]
+                  FROM      dbo.movie m
+                  INNER     JOIN dbo.movie_genre mg on m.id = mg.movieid
+                  WHERE     mg.genreid = @key
+                  ORDER BY  id
                   OFFSET    @pageSize * (@pageNumber - 1) ROWS
                   FETCH     NEXT @pageSize ROWS ONLY;";
 
