@@ -11,15 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{AFCB0C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{B3ABB2BA-B1A2-4489-A4EE-EB07EBA510EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Business", "src\server\App.Business\App.Business.csproj", "{37CCFFED-6BF3-4F87-86C4-D46908587D79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Business", "src\server\Backend.Business\Backend.Business.csproj", "{37CCFFED-6BF3-4F87-86C4-D46908587D79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data.Context", "src\server\App.Data.Context\App.Data.Context.csproj", "{BD38EEC9-CFE2-4A1E-98EA-92CC860E0D33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Context", "src\server\Backend.Context\Backend.Context.csproj", "{BD38EEC9-CFE2-4A1E-98EA-92CC860E0D33}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data.Repository", "src\server\App.Data.Repository\App.Data.Repository.csproj", "{68990147-A4F2-444D-A031-4E71F1E8EE9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Repository", "src\server\Backend.Repository\Backend.Repository.csproj", "{68990147-A4F2-444D-A031-4E71F1E8EE9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Web.Api", "src\server\App.Web.Api\App.Web.Api.csproj", "{8EEC5882-4410-4371-82C7-11A5F6091E54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Api", "src\server\Backend.Api\Backend.Api.csproj", "{8EEC5882-4410-4371-82C7-11A5F6091E54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Data.Context.Test", "tests\App.Data.Context.Test\App.Data.Context.Test.csproj", "{9150FB5C-FC37-4F2A-A0BD-9C62A433EE86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Context.Test", "tests\Backend.Context.Test\Backend.Context.Test.csproj", "{9150FB5C-FC37-4F2A-A0BD-9C62A433EE86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{76B20EAD-E5F1-4FE8-9025-F9E0170A35CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Entities", "src\shared\Domain.Entities\Domain.Entities.csproj", "{C7FC26A0-ABB6-408F-AB08-8B24C3630C9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.Blazor", "src\client\Frontend.Blazor\Frontend.Blazor.csproj", "{A9553F8C-6BC8-4DB8-AB99-376057D8DE32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +53,14 @@ Global
 		{9150FB5C-FC37-4F2A-A0BD-9C62A433EE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9150FB5C-FC37-4F2A-A0BD-9C62A433EE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9150FB5C-FC37-4F2A-A0BD-9C62A433EE86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7FC26A0-ABB6-408F-AB08-8B24C3630C9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FC26A0-ABB6-408F-AB08-8B24C3630C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FC26A0-ABB6-408F-AB08-8B24C3630C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FC26A0-ABB6-408F-AB08-8B24C3630C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9553F8C-6BC8-4DB8-AB99-376057D8DE32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9553F8C-6BC8-4DB8-AB99-376057D8DE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9553F8C-6BC8-4DB8-AB99-376057D8DE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9553F8C-6BC8-4DB8-AB99-376057D8DE32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +73,9 @@ Global
 		{68990147-A4F2-444D-A031-4E71F1E8EE9E} = {AFCB0CA7-1783-492F-BA01-BF100B868EFD}
 		{8EEC5882-4410-4371-82C7-11A5F6091E54} = {AFCB0CA7-1783-492F-BA01-BF100B868EFD}
 		{9150FB5C-FC37-4F2A-A0BD-9C62A433EE86} = {E85F092E-FF5E-42B0-A6FF-18A8EF6B1379}
+		{76B20EAD-E5F1-4FE8-9025-F9E0170A35CE} = {2C4E5534-80F0-4E76-B006-9497579CF134}
+		{C7FC26A0-ABB6-408F-AB08-8B24C3630C9E} = {76B20EAD-E5F1-4FE8-9025-F9E0170A35CE}
+		{A9553F8C-6BC8-4DB8-AB99-376057D8DE32} = {B3ABB2BA-B1A2-4489-A4EE-EB07EBA510EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B65DACE-3E76-4273-A33E-C6CC57D047F6}
