@@ -2,9 +2,9 @@
 {
     using Backend.Business.Interfaces;
     using Backend.Repository.Interfaces;
-    using Domain.Entities;
-    using Domain.Entities.Extensions;
-    using Domain.Entities.Produces;
+    using Domain.Entity;
+    using Domain.Entity.Extensions;
+    using Domain.Entity.Produces;
     using Optional;
     using System.Collections.Generic;
     using System.Threading.Tasks;

@@ -4,8 +4,8 @@
     using Backend.Repository.Interfaces;
     using Backend.Repository.Repositories.Base;
     using Dapper;
-    using Domain.Entities;
-    using Domain.Entities.Produces;
+    using Domain.Entity;
+    using Domain.Entity.Produces;
     using System;
     using System.Linq;
 

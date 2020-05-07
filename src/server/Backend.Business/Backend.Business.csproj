@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\shared\Domain.Entities\Domain.Entities.csproj" />
+    <ProjectReference Include="..\..\shared\Domain.Entities\Domain.Entity.csproj" />
+    <ProjectReference Include="..\..\shared\Domain.Entity\Domain.Entity.csproj" />
     <ProjectReference Include="..\Backend.Repository\Backend.Repository.csproj" />
   </ItemGroup>
 

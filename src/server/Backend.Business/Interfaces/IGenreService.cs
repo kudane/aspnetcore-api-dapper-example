@@ -1,6 +1,6 @@
 ﻿namespace Backend.Business.Interfaces
 {
-    using Domain.Entities;
+    using Domain.Entity;
     using Optional;
     using System.Collections.Generic;
     using System.Threading.Tasks;

@@ -1,7 +1,7 @@
 ﻿namespace Backend.Business.Interfaces
 {
-    using Domain.Entities;
-    using Domain.Entities.Produces;
+    using Domain.Entity;
+    using Domain.Entity.Produces;
     using Optional;
     using System.Collections.Generic;
     using System.Threading.Tasks;

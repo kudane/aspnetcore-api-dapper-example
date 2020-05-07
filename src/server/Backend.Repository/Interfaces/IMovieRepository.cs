@@ -1,8 +1,8 @@
 ﻿namespace Backend.Repository.Interfaces
 {
     using Backend.Repository.Interfaces.Base;
-    using Domain.Entities;
-    using Domain.Entities.Produces;
+    using Domain.Entity;
+    using Domain.Entity.Produces;
 
     public interface IMovieRepository: IBaseRepository<Movie>
     {
