@@ -1,20 +1,36 @@
 ﻿@page "/genre/{id:int}"
 
-@using System.Net.Http
-@using Domain.Entity
-@using Domain.Entity.Produces
-@inject HttpClient Http
+@using Frontend.Blazor.Interface
+@inject IMovieService movieService
 
 <h1>Movie List</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (_result.Items == null)
+@if (movieService.Movies.Count == 0)
 {
-    <p><em>Loading...</em></p>
+    <p><em>Empty...</em></p>
 }
 else
 {
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Page size: @_pagesize
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach (var pagesize in PageSizeList)
+            {
+                <a class="dropdown-item"
+                   href="javascript:void(0)"
+                   @onclick="@(e => HandlePageSize(pagesize))">
+                    @pagesize
+                </a>
+            }
+        </div>
+    </div>
+
+    <br />
+
     <table class="table">
         <thead>
             <tr>
@@ -24,7 +40,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var movie in _result.Items)
+            @foreach (var movie in movieService.Movies)
             {
                 <tr>
                     <td>@movie.Subject</td>
@@ -37,65 +53,72 @@ else
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item @PreviousDisabledClass"><a class="page-link" href="#">Previous</a></li>
-
-            @for (var i = 1; i <= _result.TotalPages; i++)
+            @foreach (var item in movieService.Pagination.PageItems)
             {
-                var pageNumber = i;
+                var text = item.Text;
+                var active = text == movieService.CurrentPage ? "active" : null;
 
-                if (currentPage == pageNumber)
-                {
-                    <li class="page-item active">
-                        <span style="cursor: pointer;" class="page-link" @onclick="@(async () => await OnClickPage(pageNumber))">@i</span>
+                <li class="page-item @active">
+                    <span class="page-link"
+                          style="cursor:pointer;"
+                          href="javascript:void(0)"
+                          @onclick="@(e => HandlePagiantion(text))">@text</span>
                     </li>
                 }
-                else
-                {
-                    <li class="page-item">
-                        <span style="cursor: pointer;" class="page-link" @onclick="@(async () => await OnClickPage(pageNumber))">@i</span>
-                    </li>
-                }
-            }
-
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
     </nav>
 }
 
 @code {
+    private List<int> PageSizeList = new List<int>() { 5, 20, 50, 100 };
+
     [Parameter]
     public int Id { get; set; }
 
-    const int pagesize = 5;
-    private int pagenumber = 1;
-    private int currentPage = 1;
+    // Set OnInitializedAsync
+    private int _pagesize;
+    private int _pageNumber;
 
-    private PageResult<Movie> _result = new PageResult<Movie>();
-
-    private bool isPreviousDisabled = false;
-
-    private string PreviousDisabledClass => isPreviousDisabled ? "disabled" : null;
+    #region Component Lift Cycle
+    protected override async Task OnInitializedAsync()
+    {
+        _pageNumber = 1;
+        _pagesize = PageSizeList.First();
+        await GetMovieAsync();
+    }
 
     protected override async Task OnParametersSetAsync()
     {
-        await GetMoviesAync();
+        _pageNumber = 1;
+        await GetMovieAsync();
     }
+    #endregion
 
-    private async Task OnClickPage(int number)
+    #region Event Handling
+    private async Task HandlePageSize(int pagesize)
     {
-        pagenumber = number;
-
-        await GetMoviesAync();
+        _pageNumber = 1;
+        _pagesize = pagesize;
+        await GetMovieAsync();
     }
 
-    private async Task GetMoviesAync()
+    private async Task HandlePagiantion(string pageNumber)
     {
-        var url = $"api/genre/{Id}/movies?pagesize={pagesize}&pagenumber={pagenumber}";
+        if (pageNumber.Equals("..."))
+        {
+            return;
+        }
 
-        _result = await Http.GetJsonAsync<PageResult<Movie>>(url);
-
-        isPreviousDisabled = _result.CurrentPage == 1;
-
-        currentPage = _result.CurrentPage;
+        _pageNumber = int.Parse(pageNumber);
+        await GetMovieAsync();
     }
+    #endregion
+
+    #region Call Service
+    private async Task GetMovieAsync()
+    {
+        await movieService.LoadAsync(Id, _pagesize, _pageNumber);
+        StateHasChanged();
+    }
+    #endregion
 }

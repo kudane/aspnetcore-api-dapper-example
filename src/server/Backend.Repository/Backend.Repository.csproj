@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\shared\Domain.Entities\Domain.Entity.csproj" />
     <ProjectReference Include="..\..\shared\Domain.Entity\Domain.Entity.csproj" />
     <ProjectReference Include="..\Backend.Context\Backend.Context.csproj" />
   </ItemGroup>
