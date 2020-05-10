@@ -17,23 +17,31 @@
         {
         }
 
-        public ref PageResult<Movie> SelectByGenreKey(int key, int pageSize, int pageNumber)
+        public ref PageResult<Movie> SelectByGenreKey(int key, int pageSize, int pageNumber, string search)
         {
             var parameters = new { key, pageSize, pageNumber };
 
-            var sql = @"
-                  SELECT    COUNT(m.id) 
-                  FROM      dbo.movie m
-                  INNER     JOIN dbo.movie_genre mg on m.id = mg.movieid
-                  WHERE     mg.genreid = @key;
+            var sql = $@"
+                  SELECT        COUNT(m.id) 
+                  FROM          dbo.movie m
+                  INNER JOIN    dbo.movie_genre mg on m.id = mg.movieid
+                  WHERE         mg.genreid = @key
+                  --AND         m.subject like '%{search}%'
+                  ;
 
-                  SELECT    m.* 
-                  FROM      dbo.movie m
-                  INNER     JOIN dbo.movie_genre mg on m.id = mg.movieid
-                  WHERE     mg.genreid = @key
-                  ORDER BY  id
-                  OFFSET    @pageSize * (@pageNumber - 1) ROWS
-                  FETCH     NEXT @pageSize ROWS ONLY;";
+                  SELECT        m.* 
+                  FROM          dbo.movie m
+                  INNER JOIN    dbo.movie_genre mg on m.id = mg.movieid
+                  WHERE         mg.genreid = @key
+                  --AND         m.subject like '%{search}%'
+                  ORDER BY      id
+                  OFFSET        @pageSize * (@pageNumber - 1) ROWS
+                  FETCH         NEXT @pageSize ROWS ONLY;";
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                sql = sql.Replace("--", string.Empty);
+            }
 
             using (var multi = Connection.QueryMultiple(sql, parameters))
             {

@@ -12,6 +12,6 @@
 
         Task<Option<Movie, Error>> GetAsync(int key);
 
-        ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize, int pageNumber);
+        ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize, int pageNumber, string search = "");
     }
 }

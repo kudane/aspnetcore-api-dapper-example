@@ -22,7 +22,7 @@
             (await _movieRepository.GetOrNullAsync(key))
                 .SomeWhen<Movie, Error>(movie => movie.IsNotNull(), $"Movie {key}, Not found.");
 
-        public ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize = 20, int pageNumber = 1) =>
-            ref _movieRepository.SelectByGenreKey(genreKey, pageSize, pageNumber);
+        public ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize = 20, int pageNumber = 1, string search = "") =>
+            ref _movieRepository.SelectByGenreKey(genreKey, pageSize, pageNumber, search);
     }
 }

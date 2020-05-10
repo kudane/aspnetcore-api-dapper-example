@@ -6,6 +6,6 @@
 
     public interface IMovieRepository: IBaseRepository<Movie>
     {
-        ref PageResult<Movie> SelectByGenreKey(int key, int pageSize, int pageNumber);
+        ref PageResult<Movie> SelectByGenreKey(int key, int pageSize, int pageNumber, string search);
     }
 }
