@@ -12,18 +12,6 @@ namespace Frontend.Blazor.Extensions
         {
             public static void PageToPager(this PaginationViewModel pagination, int currentPage, int totalPage)
             {
-                #region handle error
-                if (currentPage == 0)
-                {
-                    throw new ArgumentException($"{currentPage} invalid");
-                }
-
-                if (totalPage == 0)
-                {
-                    throw new ArgumentException($"{totalPage} invalid");
-                }
-                #endregion
-
                 const int leftActive = 3;
                 const int rightActive = 3;
 

@@ -9,7 +9,7 @@ namespace Frontend.Blazor.Interface
 {
     public interface IMovieService: IDisposable
     {
-        Task LoadAsync(int genreId, int pageSize = 5, int pageNumber = 1);
+        Task LoadAsync(int genreId, int pageSize = 5, int pageNumber = 1, string search = "");
 
         List<Movie> Movies { get; }
 

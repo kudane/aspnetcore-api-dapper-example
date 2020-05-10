@@ -32,9 +32,9 @@ namespace Frontend.Blazor.Data
         #endregion
 
         #region Method
-        public async Task LoadAsync(int genreId, int pageSize = 5, int pageNumber = 1)
+        public async Task LoadAsync(int genreId, int pageSize = 5, int pageNumber = 1, string search = "")
         {
-            var url = EndpointExtension.GetMovie(genreId, pageSize, pageNumber);
+            var url = EndpointExtension.GetMovie(genreId, pageSize, pageNumber, search);
             _pageResult = await _http.GetJsonAsync<PageResult<Movie>>(url);
             Pagination.PageToPager(pageNumber, _pageResult.TotalPages);
         }
