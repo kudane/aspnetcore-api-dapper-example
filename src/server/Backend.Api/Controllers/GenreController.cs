@@ -21,9 +21,9 @@
             (await _genreService.GetAsync(key)).Match(genre => Ok(genre), NotFound);
 
         [HttpGet("{key}/movies")]
-        public async Task<IActionResult> GetMoviesAsync(int key = 1, int pageSize = 20, int pageNumber = 1) =>
+        public async Task<IActionResult> GetMoviesAsync(int key = 1, int pageSize = 20, int pageNumber = 1, string search = "") =>
             (await _genreService.GetAsync(key))
-                .Map(_ => _movieService.FindMoviesByGenre(key, pageSize, pageNumber))
+                .Map(_ => _movieService.FindMoviesByGenre(key, pageSize, pageNumber, search))
                 .Match(movies => Ok(movies), NotFound);
     }
 }

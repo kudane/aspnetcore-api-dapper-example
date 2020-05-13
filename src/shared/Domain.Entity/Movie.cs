@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities
+﻿namespace Domain.Entity
 {
     using Dapper.Contrib.Extensions;
 

@@ -1,7 +1,7 @@
 ﻿namespace Backend.Business.Interfaces
 {
-    using Domain.Entities;
-    using Domain.Entities.Produces;
+    using Domain.Entity;
+    using Domain.Entity.Produces;
     using Optional;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -12,6 +12,6 @@
 
         Task<Option<Movie, Error>> GetAsync(int key);
 
-        ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize, int pageNumber);
+        ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize, int pageNumber, string search = "");
     }
 }

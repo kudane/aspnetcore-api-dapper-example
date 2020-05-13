@@ -1,3 +1,5 @@
+using Frontend.Blazor.Data;
+using Frontend.Blazor.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +30,7 @@ namespace Frontend.Blazor
                 {
                     BaseAddress = new Uri("http://localhost:51158/")
                 });
+            services.AddScoped<IMovieService, MovieService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

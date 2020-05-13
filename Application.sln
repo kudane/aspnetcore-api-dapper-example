@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.Context.Test", "tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{76B20EAD-E5F1-4FE8-9025-F9E0170A35CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Entities", "src\shared\Domain.Entities\Domain.Entities.csproj", "{C7FC26A0-ABB6-408F-AB08-8B24C3630C9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Entity", "src\shared\Domain.Entity\Domain.Entity.csproj", "{C7FC26A0-ABB6-408F-AB08-8B24C3630C9E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frontend.Blazor", "src\client\Frontend.Blazor\Frontend.Blazor.csproj", "{A9553F8C-6BC8-4DB8-AB99-376057D8DE32}"
 EndProject

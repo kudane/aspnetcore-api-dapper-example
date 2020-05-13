@@ -1,30 +1,64 @@
 ﻿@page "/genre/{id:int}"
 
-@using System.Net.Http
-@using Domain.Entities
-@using Domain.Entities.Produces
-@inject HttpClient Http
+@using Frontend.Blazor.Interface
+@inject IMovieService movieService
 
 <h1>Movie List</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (_result.Items == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
+<div class="d-flex justify-content-between">
+
+    <div class="col-auto dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Page size: @_pagesize
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach (var pagesize in PageSizeList)
+            {
+                <a class="dropdown-item"
+                   href="javascript:void(0)"
+                   @onclick="@(e => HandlePageSize(pagesize))">
+                    @pagesize
+                </a>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <div class="mb-2">
+                <input type="text" @bind="_movieName" class="form-control" placeholder="Movie Name">
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary mb-2" @onclick="HandleSearch">Search</button>
+        </div>
+    </div>
+</div>
+
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Summary</th>
+            <th>Ratting</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (_loading)
+        {
             <tr>
-                <th>Subject</th>
-                <th>Summary</th>
-                <th>Ratting</th>
+                <td colspan="4"><em>Loading...</em></td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var movie in _result.Items)
+        }
+        else if (movieService.Movies.Count > 0)
+        {
+            foreach (var movie in movieService.Movies)
             {
                 <tr>
                     <td>@movie.Subject</td>
@@ -32,18 +66,99 @@ else
                     <td>@movie.Ratting</td>
                 </tr>
             }
-        </tbody>
-    </table>
-}
+        }
+        else
+        {
+            <tr>
+                <td colspan="4"><em>Results (0)...</em></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @foreach (var item in movieService.Pagination.PageItems)
+        {
+            var text = item.Text;
+            var active = text == movieService.CurrentPage ? "active" : null;
+
+            <li class="page-item @active">
+                <span class="page-link"
+                      style="cursor:pointer;"
+                      href="javascript:void(0)"
+                      @onclick="@(e => HandlePagiantion(text))">@text</span>
+                </li>
+            }
+    </ul>
+</nav>
+
+
 
 @code {
+    private List<int> PageSizeList = new List<int>() { 5, 20, 50, 100 };
+
     [Parameter]
     public int Id { get; set; }
 
-    private PageResult<Movie> _result = new PageResult<Movie>();
+    // Set OnInitializedAsync
+    private int _pagesize { get; set; }
+    private int _pageNumber { get; set; }
+    private string _movieName { get; set; }
+    private bool _loading { get; set; }
+
+    #region Component Lift Cycle
+    protected override async Task OnInitializedAsync()
+    {
+        _loading = true;
+        _movieName = "";
+        _pageNumber = 1;
+        _pagesize = PageSizeList.First();
+        await GetMovieAsync();
+    }
 
     protected override async Task OnParametersSetAsync()
     {
-        _result = await Http.GetJsonAsync<PageResult<Movie>>($"api/genre/{Id}/movies");
+        _loading = true;
+        _pageNumber = 1;
+        await GetMovieAsync();
     }
+    #endregion
+
+    #region Event Handling
+    private async Task HandlePageSize(int pagesize)
+    {
+        _loading = true;
+        _pageNumber = 1;
+        _pagesize = pagesize;
+        await GetMovieAsync();
+    }
+
+    private async Task HandlePagiantion(string pageNumber)
+    {
+        if (pageNumber.Equals("..."))
+        {
+            return;
+        }
+
+        _loading = true;
+        _pageNumber = int.Parse(pageNumber);
+        await GetMovieAsync();
+    }
+
+    private async Task HandleSearch()
+    {
+        _loading = true;
+        await GetMovieAsync();
+    }
+    #endregion
+
+    #region Call Service
+    private async Task GetMovieAsync()
+    {
+        await movieService.LoadAsync(Id, _pagesize, _pageNumber, _movieName);
+        _loading = false;
+        StateHasChanged();
+    }
+    #endregion
 }

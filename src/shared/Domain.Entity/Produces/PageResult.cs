@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.Produces
+﻿namespace Domain.Entity.Produces
 {
     using System.Collections.Generic;
 

@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.Extensions
+﻿namespace Domain.Entity.Extensions
 {
     public static class EntityExtension
     {

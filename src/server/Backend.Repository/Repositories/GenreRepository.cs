@@ -3,7 +3,7 @@
     using Backend.Context.Interfaces;
     using Backend.Repository.Interfaces;
     using Backend.Repository.Repositories.Base;
-    using Domain.Entities;
+    using Domain.Entity;
 
     internal class GenreRepository : BaseRepository<Genre>, IGenreRepository
     {

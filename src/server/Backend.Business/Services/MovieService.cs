@@ -2,9 +2,9 @@
 {
     using Backend.Business.Interfaces;
     using Backend.Repository.Interfaces;
-    using Domain.Entities;
-    using Domain.Entities.Extensions;
-    using Domain.Entities.Produces;
+    using Domain.Entity;
+    using Domain.Entity.Extensions;
+    using Domain.Entity.Produces;
     using Optional;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -22,7 +22,7 @@
             (await _movieRepository.GetOrNullAsync(key))
                 .SomeWhen<Movie, Error>(movie => movie.IsNotNull(), $"Movie {key}, Not found.");
 
-        public ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize = 20, int pageNumber = 1) =>
-            ref _movieRepository.SelectByGenreKey(genreKey, pageSize, pageNumber);
+        public ref PageResult<Movie> FindMoviesByGenre(int genreKey, int pageSize = 20, int pageNumber = 1, string search = "") =>
+            ref _movieRepository.SelectByGenreKey(genreKey, pageSize, pageNumber, search);
     }
 }

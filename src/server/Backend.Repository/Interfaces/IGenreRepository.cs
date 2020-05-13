@@ -1,7 +1,7 @@
 ﻿namespace Backend.Repository.Interfaces
 {
     using Backend.Repository.Interfaces.Base;
-    using Domain.Entities;
+    using Domain.Entity;
 
     public interface IGenreRepository : IBaseRepository<Genre>
     {
