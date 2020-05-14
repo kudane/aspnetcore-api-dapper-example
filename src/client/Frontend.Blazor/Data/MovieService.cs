@@ -1,16 +1,15 @@
-﻿using Domain.Entity;
-using Domain.Entity.Produces;
-using Frontend.Blazor.Extensions;
-using Frontend.Blazor.Extensions.Frontend.Blazor.Extensions;
-using Frontend.Blazor.Interface;
-using Frontend.Blazor.ViewModels;
-using Microsoft.AspNetCore.Components;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-namespace Frontend.Blazor.Data
+﻿namespace Frontend.Blazor.Data
 {
+    using Domain.Entity;
+    using Domain.Entity.Produces;
+    using Frontend.Blazor.Extensions;
+    using Frontend.Blazor.Interface;
+    using Frontend.Blazor.ViewModels;
+    using Microsoft.AspNetCore.Components;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+
     public class MovieService : IMovieService
     {
         private readonly HttpClient _http;
