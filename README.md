@@ -1,4 +1,4 @@
-# .NET Core API With [Dapper](https://github.com/StackExchange/Dapper)
+# .NET Core API With [Dapper](https://github.com/StackExchange/Dapper) (Cancel)
 
 > ### โปรเจคนี้จัดทำขึ้นเพื่อประยุกต์ใช้ Dapper เพื่อทดสอบเรื่องประสิทธิภาพและการนำมาใช้เป็นอย่างไร (น่าใช่จริงรึเปล่า?) และ Pattern ต่างๆ
 
